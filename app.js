@@ -8,8 +8,8 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/', (request, response) => {
-	console.log(req.body);
-	res.json(req.body);
+	console.log(request.body);
+	response.json(request.body);
 
 });
 
