@@ -7,7 +7,7 @@ let app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (request, response) => {
+app.post('/', (request, response) => {
 	console.log(req.body);
 	res.json(req.body);
 
