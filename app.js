@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const genreRouter = require('./routes/genre');
-const paramRouter = require('./routes/param');
+//const paramRouter = require('./routes/param');
 var jwt = require('jsonwebtoken');
 
 mongoose.connect(config.database);
@@ -14,14 +14,23 @@ mongoose.connection.on('connected', function(){
 });
 
 const port = process.env.PORT || 3000;
-let app = express();
+const app = express();
 
 
 
 app.use(cors());
 app.use(bodyParser.json());
 
+app.post('/', (request, response) => {
+	console.log(request.body);
+	response.json(request.body);
 
+});
+app.get('/', (request, response, next) => {
+	
+	response.json({"message":"Hellow world"});
+
+});
 app.get('/test/:id&:id2', (req,res)=>{
      console.log(req.params.id);
      res.json({"test": req.params.id,
@@ -29,20 +38,12 @@ app.get('/test/:id&:id2', (req,res)=>{
           });
 });
 
-app.use('/getParams',paramRouter);
+//app.use('/getParams',paramRouter);
 
 app.use('/genre', genreRouter);
-app.post('/', (request, response) => {
-	console.log(request.body);
-	response.json(request.body);
 
-});
 
-app.get('/', (request, response, next) => {
-	
-	response.json({"message":"Hellow world"});
 
-});
 app.post('/login', function(req,res){
      const user = {
           "username":"sam"
