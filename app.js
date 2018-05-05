@@ -15,12 +15,23 @@ mongoose.connection.on('connected', function(){
 const port = process.env.PORT || 3000;
 let app = express();
 
-app.get('/test', (req,res)=>{
-     res.json({"test":1});
-});
+
 
 app.use(cors());
 app.use(bodyParser.json());
+
+
+app.get('/test/:id&:id2', (req,res)=>{
+     console.log(req.params.id);
+     res.json({"test": req.params.id,
+     "id2": req.params.id2
+          });
+});
+
+app.get('/getParams', (req,res)=>{
+     console.log(req.query);
+     res.json(req.query);
+});
 
 app.use('/genre', genreRouter);
 app.post('/', (request, response) => {
