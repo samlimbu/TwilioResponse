@@ -29,7 +29,7 @@ app.get('/test/:id&:id2', (req,res)=>{
           });
 });
 
-app.use('/getParams',paramRouter)
+app.use('/getParams',paramRouter);
 
 app.use('/genre', genreRouter);
 app.post('/', (request, response) => {
