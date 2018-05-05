@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const genreRouter = require('./routes/genre');
-//const paramRouter = require('./routes/param');
+const paramRouter = require('./routes/param');
 var jwt = require('jsonwebtoken');
 
 mongoose.connect(config.database);
@@ -38,7 +38,7 @@ app.get('/test/:id&:id2', (req,res)=>{
           });
 });
 
-//app.use('/getParams',paramRouter);
+app.use('/getParams',paramRouter);
 
 app.use('/genre', genreRouter);
 
